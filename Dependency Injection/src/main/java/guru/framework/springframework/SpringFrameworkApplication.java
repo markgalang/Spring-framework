@@ -1,9 +1,6 @@
 package guru.framework.springframework;
 
-import guru.framework.springframework.controllers.ContructorInjectedController;
-import guru.framework.springframework.controllers.MyController;
-import guru.framework.springframework.controllers.PropertyInjectedController;
-import guru.framework.springframework.controllers.SetterInjectedController;
+import guru.framework.springframework.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +11,9 @@ public class SpringFrameworkApplication {
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringFrameworkApplication.class, args);
 
+		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+		System.out.println(i18nController.sayHello());
+
 		MyController myController = (MyController) ctx.getBean("myController");
 
 //		String greeting = myController.sayHello();
@@ -22,7 +22,7 @@ public class SpringFrameworkApplication {
 
 		System.out.println("------- PRIMARY");
 		System.out.println(myController.sayHello());
-		
+
 		System.out.println("------- Property");
 		PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
 		System.out.println(propertyInjectedController.getGreeting());
